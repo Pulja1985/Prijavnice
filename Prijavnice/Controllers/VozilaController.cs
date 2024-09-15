@@ -1,20 +1,21 @@
-﻿using EdunovaAPP.Data;
-using EdunovaAPP.Models;
+﻿using Prijavnice.Data;
+using Prijavnice.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EdunovaAPP.Controllers
+
+namespace Prijavnice.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class SmjerController : ControllerBase
+    public class PrijavniceController : ControllerBase
     {
-        // dependency injection
-        // 1. definirati privatno svojstvo
-        private readonly EdunovaContext _context;
+        
+        
+        private readonly PrijavniceContext _context;
 
-        // dependecy injection
-        // 2. proslijediš instancu kroz konstruktor
-        public SmjerController(EdunovaContext context)
+        
+        
+        public PrijavniceController(PrijavniceContext context)
         {
             _context = context;
         }
@@ -23,41 +24,41 @@ namespace EdunovaAPP.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Smjerovi);
+            return Ok(_context.Vozila);
         }
 
         [HttpGet]
         [Route("{sifra:int}")]
         public IActionResult GetBySifra(int sifra)
         {
-            return Ok(_context.Smjerovi.Find(sifra));
+            return Ok(_context.Vozila.Find(sifra));
         }
 
 
 
         [HttpPost]
-        public IActionResult Post(Smjer smjer)
+        public IActionResult Post(Vozilo vozilo)
         {
-            _context.Smjerovi.Add(smjer);
+            _context.Vozila.Add(vozilo);
             _context.SaveChanges();
-            return StatusCode(StatusCodes.Status201Created, smjer);
+            return StatusCode(StatusCodes.Status201Created, vozilo);
         }
 
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
-        public IActionResult Put(int sifra, Smjer smjer) 
+        public IActionResult Put(int sifra, Vozilo vozilo) 
         {
-            var smjerBaza = _context.Smjerovi.Find(sifra);
+            var voziloBaza = _context.vozilo.Find(sifra);
 
-            // za sada ručno, kasnije mapper
-            smjerBaza.Naziv = smjer.Naziv;
-            smjerBaza.Trajanje = smjer.Trajanje;
-            smjerBaza.Cijena = smjer.Cijena;
-            smjerBaza.IzvodiSeOd = smjer.IzvodiSeOd;
-            smjerBaza.Vaucer= smjer.Vaucer;
+            
+            voziloBaza.Marka = vozilo.marka;
+            voziloBaza.Model = vozilo.model;
+            voziloBaza.Snaga = vozilo.snaga;
+            voziloBaza.Pogon = vozilo.pogon;
+            voziloBaza.Vozaci_sifra = vozilo.vozaci_sifra;
 
-            _context.Smjerovi.Update(smjerBaza);
+            _context.Vozila.Update(voziloBaza);
             _context.SaveChanges();
 
             return Ok(new {poruka = "Uspješno promjenjeno"});
@@ -71,9 +72,9 @@ namespace EdunovaAPP.Controllers
         [Produces("application/json")]
         public IActionResult Delete(int sifra)
         {
-            var smjerBaza = _context.Smjerovi.Find(sifra);
+            var voziloBaza = _context.Vozila.Find(sifra);
 
-            _context.Smjerovi.Remove(smjerBaza);
+            _context.Vozila.Remove(voziloBaza);
             _context.SaveChanges();
 
             return Ok(new { poruka = "Uspješno obrisano" });
