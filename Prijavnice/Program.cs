@@ -1,4 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
+using Prijavnice.Data;
+using Microsoft.EntityFrameworkCore;
+    
+    var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
