@@ -1,11 +1,11 @@
 ﻿namespace Prijavnice.Models
 {
-    public class Utrka
+    public class Utrka: Entitet
     {
-        public DateTime? datum { get; set; }
+        public DateTime? Datum { get; set; }
 
-        public string? mjesto { get; set; }
+        public string? Mjesto { get; set; }
 
-        public string? naziv { get; set; }
+        public string? Naziv { get; set; }
     }
 }

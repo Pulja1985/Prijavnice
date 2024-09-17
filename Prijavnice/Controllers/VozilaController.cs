@@ -7,7 +7,7 @@ namespace Prijavnice.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class PrijavniceController : ControllerBase
+    public class VozilaController : ControllerBase
     {
         
         
@@ -15,7 +15,7 @@ namespace Prijavnice.Controllers
 
         
         
-        public PrijavniceController(PrijavniceContext context)
+        public VozilaController(PrijavniceContext context)
         {
             _context = context;
         }
@@ -56,7 +56,6 @@ namespace Prijavnice.Controllers
             voziloBaza.Model = vozilo.Model;
             voziloBaza.Snaga = vozilo.Snaga;
             voziloBaza.Pogon = vozilo.Pogon;
-            voziloBaza.Vozaci_sifra = vozilo.vozaci_sifra;
 
             _context.Vozila.Update(voziloBaza);
             _context.SaveChanges();

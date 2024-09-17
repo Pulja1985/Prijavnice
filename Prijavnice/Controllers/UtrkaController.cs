@@ -6,7 +6,7 @@ namespace Prijavnice.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class PrijavniceController : ControllerBase
+    public class UtrkaController : ControllerBase
     {
 
 
@@ -14,7 +14,7 @@ namespace Prijavnice.Controllers
 
 
 
-        public PrijavniceController(PrijavniceContext context)
+        public UtrkaController(PrijavniceContext context)
         {
             _context = context;
         }
@@ -23,14 +23,14 @@ namespace Prijavnice.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Utrka);
+            return Ok(_context.Utrke);
         }
 
         [HttpGet]
         [Route("{sifra:int}")]
         public IActionResult GetBySifra(int sifra)
         {
-            return Ok(_context.Utrka.Find(sifra));
+            return Ok(_context.Utrke.Find(sifra));
         }
 
 
@@ -38,7 +38,7 @@ namespace Prijavnice.Controllers
         [HttpPost]
         public IActionResult Post(Utrka utrka)
         {
-            _context.Utrka.Add(utrka);
+            _context.Utrke.Add(utrka);
             _context.SaveChanges();
             return StatusCode(StatusCodes.Status201Created, utrka);
         }
@@ -48,16 +48,16 @@ namespace Prijavnice.Controllers
         [Produces("application/json")]
         public IActionResult Put(int sifra, Utrka utrka)
         {
-            var utrkaBaza = _context.Utrka.Find(sifra);
+            var utrkaBaza = _context.Utrke.Find(sifra);
 
 
-            utrkaBaza.Datum = utrka.datum;
-            utrkaBaza.Mjesto = utrka.mjesto;
-            utrkaBaza.Naziv = utrka.naziv;
+            utrkaBaza.Datum = utrka.Datum;
+            utrkaBaza.Mjesto = utrka.Mjesto;
+            utrkaBaza.Naziv = utrka.Naziv;
             
             
 
-            _context.Utrka.Update(utrkaBaza);
+            _context.Utrke.Update(utrkaBaza);
             _context.SaveChanges();
 
             return Ok(new { poruka = "Uspješno promjenjeno" });
@@ -71,9 +71,9 @@ namespace Prijavnice.Controllers
         [Produces("application/json")]
         public IActionResult Delete(int sifra)
         {
-            var utrkaBaza = _context.Utrka.Find(sifra);
+            var utrkaBaza = _context.Utrke.Find(sifra);
 
-            _context.Utrka.Remove(utrkaBaza);
+            _context.Utrke.Remove(utrkaBaza);
             _context.SaveChanges();
 
             return Ok(new { poruka = "Uspješno obrisano" });
