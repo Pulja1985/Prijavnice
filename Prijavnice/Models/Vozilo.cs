@@ -2,7 +2,7 @@
 
 namespace Prijavnice.Models
 {
-    public class vozilo : Entitet
+    public class Vozilo : Entitet
     {
         public string? Marka { get; set; }
         

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Prijavnice.Models;
 using System.Collections.Generic;
 
 namespace Prijavnice.Data
@@ -12,9 +13,11 @@ namespace Prijavnice.Data
 
 
         public DbSet<Vozilo> Vozila { get; set; }
+
+        public DbSet<Utrka> Utrka { get; set; }
     }
 
-    public class Vozilo
-    {
-    }
+    
+    
+    
 }

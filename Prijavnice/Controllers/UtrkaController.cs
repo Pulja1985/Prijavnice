@@ -1,7 +1,6 @@
-﻿using Prijavnice.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Prijavnice.Data;
 using Prijavnice.Models;
-using Microsoft.AspNetCore.Mvc;
-
 
 namespace Prijavnice.Controllers
 {
@@ -9,12 +8,12 @@ namespace Prijavnice.Controllers
     [Route("api/v1/[controller]")]
     public class PrijavniceController : ControllerBase
     {
-        
-        
+
+
         private readonly PrijavniceContext _context;
 
-        
-        
+
+
         public PrijavniceController(PrijavniceContext context)
         {
             _context = context;
@@ -24,45 +23,45 @@ namespace Prijavnice.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Vozila);
+            return Ok(_context.Utrka);
         }
 
         [HttpGet]
         [Route("{sifra:int}")]
         public IActionResult GetBySifra(int sifra)
         {
-            return Ok(_context.Vozila.Find(sifra));
+            return Ok(_context.Utrka.Find(sifra));
         }
 
 
 
         [HttpPost]
-        public IActionResult Post(Vozilo vozilo)
+        public IActionResult Post(Utrka utrka)
         {
-            _context.Vozila.Add(vozilo);
+            _context.Utrka.Add(utrka);
             _context.SaveChanges();
-            return StatusCode(StatusCodes.Status201Created, vozilo);
+            return StatusCode(StatusCodes.Status201Created, utrka);
         }
 
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
-        public IActionResult Put(int sifra, Vozilo vozilo) 
+        public IActionResult Put(int sifra, Utrka utrka)
         {
-            var voziloBaza = _context.Vozila.Find(sifra);
+            var utrkaBaza = _context.Utrka.Find(sifra);
 
+
+            utrkaBaza.Datum = utrka.datum;
+            utrkaBaza.Mjesto = utrka.mjesto;
+            utrkaBaza.Naziv = utrka.naziv;
             
-            voziloBaza.Marka = vozilo.Marka;
-            voziloBaza.Model = vozilo.Model;
-            voziloBaza.Snaga = vozilo.Snaga;
-            voziloBaza.Pogon = vozilo.Pogon;
-            voziloBaza.Vozaci_sifra = vozilo.vozaci_sifra;
+            
 
-            _context.Vozila.Update(voziloBaza);
+            _context.Utrka.Update(utrkaBaza);
             _context.SaveChanges();
 
-            return Ok(new {poruka = "Uspješno promjenjeno"});
-        
+            return Ok(new { poruka = "Uspješno promjenjeno" });
+
         }
 
 
@@ -72,15 +71,15 @@ namespace Prijavnice.Controllers
         [Produces("application/json")]
         public IActionResult Delete(int sifra)
         {
-            var voziloBaza = _context.Vozila.Find(sifra);
+            var utrkaBaza = _context.Utrka.Find(sifra);
 
-            _context.Vozila.Remove(voziloBaza);
+            _context.Utrka.Remove(utrkaBaza);
             _context.SaveChanges();
 
             return Ok(new { poruka = "Uspješno obrisano" });
 
         }
-
-
+        
+    
     }
 }
