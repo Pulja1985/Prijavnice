@@ -12,10 +12,6 @@ namespace Prijavnice.Data
         }
 
 
-        public DbSet<Vozilo> Vozila { get; set; }
-
-        public DbSet<Utrka> Utrke { get; set; }
-
         public DbSet<Vozac> Vozaci {  get; set; }
     }
 
