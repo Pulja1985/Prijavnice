@@ -15,6 +15,15 @@ builder.Services.AddDbContext<PrijavniceContext>(opcije =>
     opcije.UseSqlServer(builder.Configuration.GetConnectionString("PrijavniceContext"));
 });
 
+builder.Services.AddCors(opcije =>
+{
+    opcije.AddPolicy("CorsPolicy",
+        builder =>
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+    );
+
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,5 +48,7 @@ app.MapControllers();
 app.UseStaticFiles();
 app.UseDefaultFiles();
 app.MapFallbackToFile("index.html");
+
+app.UseCors("CorsPolicy");
 
 app.Run();
