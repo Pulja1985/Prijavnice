@@ -1,9 +1,13 @@
 
+import auto from '../assets/auto.jpg'
 
 export default function Pocetna(){
     return(
         <>
-        Ovdje će doći nešto pametnije kasnije
+        <div className='sredina'>
+        <img src={auto} alt="Auto" />
+        </div>
+        
         </>
     )
 }

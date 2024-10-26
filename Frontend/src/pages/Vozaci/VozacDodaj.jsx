@@ -34,7 +34,7 @@ export default function VozaciDodaj(){
 
     return(
         <>
-        Dodavanje vozac
+        Dodavanje vozača
         <Form onSubmit={obradiSubmit}>
 
             <Form.Group controlId="ime">
@@ -67,7 +67,7 @@ export default function VozaciDodaj(){
             <Col xs={6} sm={12} md={9} lg={6} xl={6} xxl={6}>
             <Button variant="success"
             type="submit"
-            className="siroko">Dodaj vozaca</Button>
+            className="siroko">Dodaj vozača</Button>
             </Col>
         </Row>
         </Form>

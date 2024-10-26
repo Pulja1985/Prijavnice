@@ -50,7 +50,7 @@ export default function VozaciPregled(){
     return(
         <>
         <Link to={RouteNames.VOZAC_NOVI}
-        className="btn btn-success siroko">Dodaj novi vozac</Link>
+        className="btn btn-success siroko">Dodaj novog vozača</Link>
         <Table striped bordered hover responsive>
             <thead>
                 <tr>

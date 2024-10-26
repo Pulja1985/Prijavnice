@@ -24,11 +24,8 @@ export default function NavBarPrijavnice(){
 
                         onClick={()=>navigate(RouteNames.VOZAC_PREGLED)}
 
-                        >Vozaci</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
-                        Vozila
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Utrke</NavDropdown.Item>
+                        >Vozači</NavDropdown.Item>
+                       
                         
                        
                     </NavDropdown>
